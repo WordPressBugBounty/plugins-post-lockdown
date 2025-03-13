@@ -1,10 +1,10 @@
 === Post Lockdown ===
 Contributors: andyexeter
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=BRET43XLNLZCJ&lc=GB&item_name=Post%20Lockdown&currency_code=GBP&bn=PP%2dDonationsBF%3abtn_donate_LG%2egif%3aNonHosted
-Tags: posts, lock, protect, capabilities, capability, trash, delete
+Tags: posts, lock, protect, trash, delete
 Requires at least: 4.6
 Tested up to: 6.7
-Stable tag: 4.0.2
+Stable tag: 4.0.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -28,17 +28,6 @@ See the screenshots for an example of what an Editor would see when they view a 
 3. Select your locked/protected posts under Settings > Post Lockdown
 
 == Frequently Asked Questions ==
-
-= Are there any major changes in v2.0? =
-
-The plugin now stores an instance of the class in a global variable (`$postlockdown`) instead of using static class methods.
-If you're a developer and use any of the static methods like `PostLockdown::is_post_protected( $post_id )` in your theme code then
-you'll need to update your code to the following to be able to use v2.0:
-
-`
-global $postlockdown;
-$postlockdown->is_post_protected( $post_id );
-`
 
 = What is a "non-admin user"? =
 
@@ -67,9 +56,18 @@ The following filters are used throughout the plugin:
 
 == Changelog ==
 
-= 4.0.2 =
+= 4.0.4 =
+This is a security release. Please update as soon as possible.
 
-* Fixed a warning in WordPress 6.7 related to loading translations to early
+* Added a capability check and nonce to the autocomplete AJAX request to prevent unauthorised access to the post list
+* Added sanitization to autocomplete search term
+* Added sanitization to the plugin's settings
+* Added version string to the plugin's enqueued CSS and JS files to prevent caching issues
+* Added missing text domain to the plugin's settings page footer text
+* Added wp_kses to the Post Lockdown status column to only allow certain HTML tags
+
+= 4.0.2 =
+* Fixed a warning in WordPress 6.7 related to loading translations too early
 
 = 4.0 =
 This is a major version release. Please read the following notes carefully before updating.
